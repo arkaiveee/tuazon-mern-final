@@ -17,7 +17,7 @@ mongoose
 app.get("/", (req, res) => {
    res.send("Server is running!");
 });
-// READ - get all students
+
 app.get("/students", async (req, res) => {
    try {
        const students = await Student.find();
@@ -26,7 +26,7 @@ app.get("/students", async (req, res) => {
        res.status(500).json({ message: error.message });
    }
 });
-// CREATE - add a student
+
 app.post("/students", async (req, res) => {
    try {
        const student = new Student({
@@ -40,7 +40,7 @@ app.post("/students", async (req, res) => {
        res.status(500).json({ message: error.message });
    }
 });
-// UPDATE - edit a student by _id
+
 app.put("/students/:id", async (req, res) => {
    try {
        const updatedStudent = await Student.findByIdAndUpdate(
@@ -57,7 +57,7 @@ app.put("/students/:id", async (req, res) => {
        res.status(500).json({ message: error.message });
    }
 });
-// DELETE - remove a student by _id
+
 app.delete("/students/:id", async (req, res) => {
    try {
        await Student.findByIdAndDelete(req.params.id);
